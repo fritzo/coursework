@@ -181,8 +181,9 @@ Example trans_eq_exercise : forall (n m o p : nat),
      (n + p) = m ->
      (n + p) = (minustwo o). 
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros m n o p H0 H1.
+  apply trans_eq with n; auto.
+Qed.
 
 
 (* ###################################################### *)
@@ -267,8 +268,13 @@ Example sillyex1 : forall (X : Type) (x y z : X) (l j : list X),
      y :: l = x :: j ->
      x = y.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros X x y z l j H0 H1.
+  inversion H0.
+  inversion H1.
+  inversion H2.
+  inversion H3.
+  reflexivity.
+Qed.
 
 Theorem silly6 : forall (n : nat),
      S n = O ->
@@ -288,8 +294,9 @@ Example sillyex2 : forall (X : Type) (x y z : X) (l j : list X),
      y :: l = z :: j ->
      x = z.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros X x y z l j contra.
+  inversion contra.
+Qed.
 
 (** While the injectivity of constructors allows us to reason
     [forall (n m : nat), S n = S m -> n = m], the reverse direction of
@@ -311,13 +318,22 @@ Proof. intros A B f x y eq. rewrite eq.  reflexivity.  Qed.
 Theorem beq_nat_0_l : forall n,
    beq_nat 0 n = true -> n = 0.
 Proof.
-  (* FILL IN HERE *) Admitted.
+  intros n H.
+  induction n.
+  reflexivity.
+  compute in H.
+  inversion H.
+Qed.
 
 Theorem beq_nat_0_r : forall n,
    beq_nat n 0 = true -> n = 0.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros n H.
+  induction n.
+  reflexivity.
+  compute in H.
+  inversion H.
+Qed.
 
 
 (* ###################################################### *)
