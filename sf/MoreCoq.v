@@ -68,8 +68,10 @@ Theorem silly_ex :
      evenb 3 = true ->
      oddb 4 = true.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros H0 H1.
+  apply H0.
+  apply H1.
+Qed.
 
 (** To use the [apply] tactic, the (conclusion of the) fact
     being applied must match the goal _exactly_ -- for example, [apply]
@@ -107,14 +109,19 @@ Theorem rev_exercise1 : forall (l l' : list nat),
      l = rev l' ->
      l' = rev l.
 Proof.
-  (* FILL IN HERE *) Admitted.
-(** [] *)
+  intros x y H.
+  rewrite -> H.
+  symmetry.
+  apply rev_involutive.
+Qed.
 
 (** **** Exercise: 1 star, optional (apply_rewrite) *)
 (** Briefly explain the difference between the tactics [apply] and
     [rewrite].  Are there situations where both can usefully be
     applied?
-  (* FILL IN HERE *)
+  [rewrite] can operate on subexpressions, whereas [apply] must
+  match the goal. [rewrite] can manipulate the goal towards a form
+  that [apply] will match.
 *)
 (** [] *)
 
